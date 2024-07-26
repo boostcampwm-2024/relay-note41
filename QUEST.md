@@ -89,7 +89,7 @@
 
 </details>
 
-## 🚀5. "시퀀스 다이어그램"
+## 🚀5. "설계를 하다 보면 미리 갖추어야 할 선행 조건 역시 자연스럽게 파악할 수 있게 됩니다. (개발자 원칙, p.87)"
 
 - 다이어그램을 그리는 능력은 개발자에게 중요한 역량입니다.
 
@@ -102,7 +102,7 @@
 1. 최소 하나의 함수는 시퀀스 다이어그램으로 그려서 학습 정리에 업로드
 
 >  **Tip**: mermaid 사용해보세요! (아래 예시 참고)
-```Mermaid
+```
 graph LR
     A[Square Rect] -- Link text --> B((Circle))
     A --> C(Round Rect)
@@ -110,15 +110,11 @@ graph LR
     C --> D
 ```
 ```mermaid
-sequenceDiagram
-actor u as User
-participant a as function()
-participant b as Class
-loop loop
-b ->> a : text
-a -->> b : return
-end
-u ->> a : call
+graph LR
+    A[Square Rect] -- Link text --> B((Circle))
+    A --> C(Round Rect)
+    B --> D{Rhombus}
+    C --> D
 ```
 * 수정 이유: 라이브러리 하나도 굉장히 방대하다, 수박 겉핥기 식의 학습이 이뤄질 수도 있다.
     <br />
