@@ -8,3 +8,38 @@
 - 설계하는 과정에서 필요하다고 생각했습니다.
 
 ## 수행 내용
+
+day11 미션 1
+
+```mermaid
+sequenceDiagram
+    participant POS
+    participant Queue
+    participant Looper
+    participant Manager
+    participant WarehouseWorker
+    participant DeliveryDriver
+    participant Dashboard
+
+    POS ->> Queue: add(receiveItem)
+    POS ->> Queue: add(receiveItem)
+    POS ->> Queue: add(receiveItem)
+    
+    Looper ->> Manager: start()
+    loop every 1 second
+        Manager ->> Queue: checkQueue()
+        alt if not empty
+            Queue -->> Manager: getNext()
+            alt if receive
+                Manager ->> WarehouseWorker: startSorting(event)
+                WarehouseWorker ->> Queue: add(sort_complete)
+            else if sort_complete
+                Manager ->> DeliveryDriver: startDelivery(event)
+                DeliveryDriver ->> Queue: add(delivery_complete)
+            else if delivery_complete
+                Manager ->> Dashboard: updateStatus(event)
+                Dashboard ->> Dashboard: display()
+            end
+        end
+    end
+```
